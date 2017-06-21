@@ -1,5 +1,15 @@
-.duck {
-  display: block;
-  width: 120px;
-  margin: 1.5rem auto;
+@import 'sass-includes';
+
+.datepicker__section {
+  height: 100vh;
+  width: 100%;
+  background: $super-light-grey;
+
+  &:nth-of-type(2) { background: rgba($medium-grey, 0.15); }
+  &:nth-of-type(3) { background: rgba($medium-grey, 0.2); }
+  &:nth-of-type(4) { background: rgba($medium-grey, 0.25); }
+  &:nth-of-type(5) { background: rgba($medium-grey, 0.3); }
+  &:nth-of-type(6) { background: rgba($medium-grey, 0.35); }
+  &:nth-of-type(7) { background: rgba($medium-grey, 0.4); }
+  &:nth-of-type(8) { background: rgba($medium-grey, 0.45); }
 }

@@ -1,0 +1,33 @@
+@import 'sass-includes';
+
+.gameboard {
+  width: 70rem;
+  height: 50rem;
+  border: 0.1rem solid $medium-grey;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  width: 20%;
+  height: 14.2857142%;
+  display: block;
+  border-right: 0.1rem solid rgba($medium-grey, 0.3);
+  border-bottom: 0.1rem solid rgba($medium-grey, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.piece {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  border: 0.3rem solid $medium-grey;
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -1,0 +1,13 @@
+@import 'sass-includes';
+
+.date__decrement,
+.date__increment {
+  cursor: pointer;
+  &:hover {
+    color: red;
+  }
+}
+
+.date__month {
+  pointer-events: none;
+}
