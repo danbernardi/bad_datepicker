@@ -1,0 +1,34 @@
+.disable-scroll {
+  overflow: hidden;
+}
+
+// align content left for box model layouts
+.layout--left {
+  float: left;
+}
+
+// align content left for box model layouts
+.layout--right {
+  float: right;
+}
+
+// force position relative, used to constrain absolute children
+.layout--relative {
+  position: relative;
+}
+
+// force element to fill the viewport height
+.layout--fullheight {
+  height: 100vh;
+}
+
+// flexbox layout with immediate children centered
+.layout--flex {
+  display: flex;
+  align-items: center;
+}
+
+// clearfix class, % defined in extends
+.cf {
+  @extend %clearfix;
+}

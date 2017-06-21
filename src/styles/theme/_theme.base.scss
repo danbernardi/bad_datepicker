@@ -1,0 +1,18 @@
+// default global body styles
+body {
+  color: $black;
+}
+
+// default global link styles
+a {
+  color: blue;
+}
+
+// adds shade of grey to text elements
+.typ--white { color: $white; }
+.typ--super-light-grey { color: $super-light-grey; }
+.typ--light-grey { color: $light-grey; }
+.typ--medium-grey { color: $medium-grey; }
+.typ--dark-grey { color: $dark-grey; }
+.typ--charcoal { color: $charcoal; }
+.typ--black { color: $black; }

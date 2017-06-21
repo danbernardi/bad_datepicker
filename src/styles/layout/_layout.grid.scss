@@ -1,0 +1,60 @@
+// grid config
+@lost gutter 1.3rem;
+
+// basic row element,
+// constrains by max width,
+// adds margin to left and right
+.row {
+  @extend %container;
+  @extend %page-margins;
+  @extend %clearfix;
+  position: relative;
+  clear: both;
+  float: none;
+  // media queries
+  @include breakpoint($mobile-lg) {
+    width: 100%;
+  }
+}
+
+// defines row that is not constrained by max grid width
+.fullrow {
+  @extend %page-margins;
+  @extend %clearfix;
+  position: relative;
+  clear: both;
+  // media queries
+  @include breakpoint($mobile-lg) {
+    width: 100%;
+  }
+}
+
+// empty grid element,
+// combine with col-# to use as horizontal grid spacer
+.gridspacer {
+  height: 0.1rem;
+}
+
+// loop through $desktop-columns and define grid classes
+@for $i from 1 through $desktop-columns {
+  .col-#{$i} {
+    lost-column: $i/$desktop-columns;
+  }
+}
+
+// loop through $desktop-columns and define grid classes
+@for $i from 1 through $mobile-columns {
+  .mcol-#{$i} {
+    lost-column: $i/$mobile-columns;
+  }
+}
+
+// force element to be last item in grid, removes right gutter
+.col-last:nth-child(1n) { margin-right: 0; }
+
+// center element inside of it's parent, combine with .col-# or max-width
+.col-center:nth-child(1n) {
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}

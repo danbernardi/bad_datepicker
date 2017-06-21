@@ -1,0 +1,33 @@
+.form__input {
+  appearance: none;
+  padding: 1rem 2rem;
+  border: 0.1rem solid $light-grey;
+  border-radius: 0.3rem;
+  width: 100%;
+  background: transparent;
+}
+
+input[type=text].form__input {
+  -webkit-appearance: none;
+}
+
+input.has-error {
+  border-color: red;
+}
+
+textarea.form__input {
+  height: 25rem;
+}
+
+.form__label {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.form__error {
+  color: red;
+}
+
+.form__fields {
+  position: relative;
+}
