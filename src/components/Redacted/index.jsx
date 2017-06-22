@@ -1,20 +1,71 @@
 import React from 'react';
+import { TimelineMax, TweenMax, Power3 } from 'gsap';
 import Draggable from 'vendor/Draggable';
-import ThrowProps from 'vendor/ThrowPropsPlugin';
-import './Ouija.scss';
+import ThrowPropsPlugin from 'vendor/ThrowPropsPlugin';
+import GSAP from 'react-gsap-enhancer';
+import './Redacted.scss';
 
-export class Ouija extends React.Component {
+export class Redacted extends React.Component {
   constructor (props) {
     super(props);
+    this.pieceCoords = [null, null];
   }
 
   componentDidMount () {
-    Draggable.create(this.piece, {
+    const self = this;
+
+    self.dragboard = Draggable.create(this.piece, {
       type: 'x,y',
       edgeResistance: 0.65,
+      dragResistance: 0.35,
+      throwResistance: 1000,
       bounds: this.gameboard,
-      throwProps: true
+      throwProps: true,
+      onThrowComplete: self.checkForOverlappingSquares.bind(self)
     });
+
+    // this.spiritualResistance = setInterval(function () {
+    //   const spiritualInfluence = Math.random();
+    //   console.log(spiritualInfluence);
+    //   self.dragboard[0].dragResistance = spiritualInfluence;
+    // }, 3000);
+
+    // setInterval(function () {
+    //   console.log(self.dragboard[0]);
+    //   function spiritualInfluence (endValue) {
+    //     return Math.round(endValue / 50) * 100;
+    //   };
+
+    //   self.dragboard[0].snap = (endValue) => { console.log(endValue); return spiritualInfluence(endValue); };
+    // }, 6000);
+  }
+
+  checkForOverlappingSquares () {
+    const overlappingSquares = [];
+
+    this.gameboard.querySelectorAll('.square').forEach((item) => {
+      if (this.dragboard[0].hitTest(item)) {
+        overlappingSquares.push(item);
+        TweenMax.to(item, 0.2, { background: 'pink' });
+      } else {
+        TweenMax.set(item, { background: 'transparent' });
+      }
+    });
+
+
+
+    console.log(overlappingSquares);
+  }
+
+  spiritTakesControl () {
+    const spiritX = Math.random();
+    const spiritY = Math.random();
+    console.log([spiritX, spiritY], this.piece);
+    TweenMax.to(this.piece, 2, { x: spiritX, y: spiritY, ease: Power3.easeInOut });
+  }
+
+  componenWillUnmount () {
+    clearInterval(this.spiritualResistance);
   }
 
   render () {
@@ -69,4 +120,4 @@ export class Ouija extends React.Component {
   }
 }
 
-export default Ouija;
+export default GSAP()(Redacted);

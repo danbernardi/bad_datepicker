@@ -1,11 +1,11 @@
 import React from 'react';
-import Ouija from 'components/Ouija';
+import Redacted from 'components/Redacted';
 import './HomeView.scss';
 
 export const HomeView = () => (
   <section>
     <div className="datepicker__section">
-      <Ouija />
+      <Redacted />
     </div>
   </section>
 );
