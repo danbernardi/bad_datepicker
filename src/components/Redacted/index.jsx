@@ -8,60 +8,85 @@ import './Redacted.scss';
 export class Redacted extends React.Component {
   constructor (props) {
     super(props);
-    this.pieceCoords = [null, null];
+
+    this.resultsArray = [];
+    this.resultString = '';
+    this.queue = '';
   }
 
   componentDidMount () {
-    const self = this;
+    this.generateDraggable();
+  }
 
-    self.dragboard = Draggable.create(this.piece, {
+  generateDraggable () {
+    this.dragboard = Draggable.create(this.piece, {
       type: 'x,y',
       edgeResistance: 0.65,
       dragResistance: 0.35,
       throwResistance: 1000,
       bounds: this.gameboard,
       throwProps: true,
-      onThrowComplete: self.checkForOverlappingSquares.bind(self)
+      onThrowUpdate: () => {
+        this.checkForOverlappingSquares.bind(this)();
+      },
+      onDragEnd: () => {
+        if (this.tween) {
+          const tl = new TimelineMax().add(this.tween);
+          this.animation = this.addAnimation(tl);
+        }
+      }
     });
 
-    // this.spiritualResistance = setInterval(function () {
-    //   const spiritualInfluence = Math.random();
-    //   console.log(spiritualInfluence);
-    //   self.dragboard[0].dragResistance = spiritualInfluence;
-    // }, 3000);
+    const self = this;
 
-    // setInterval(function () {
-    //   console.log(self.dragboard[0]);
-    //   function spiritualInfluence (endValue) {
-    //     return Math.round(endValue / 50) * 100;
-    //   };
+    setInterval(function () {
+      const influenece = Math.random();
+      self.dragboard[0].dragResistance = influenece;
+    }, 200);
 
-    //   self.dragboard[0].snap = (endValue) => { console.log(endValue); return spiritualInfluence(endValue); };
-    // }, 6000);
+    setInterval(function () {
+      function influence (endValue) {
+        return Math.round(endValue / 50) * 100;
+      };
+
+      self.dragboard[0].snap = (endValue) => { console.log(endValue); return influence(endValue); };
+    }, 6000);
   }
 
   checkForOverlappingSquares () {
     const overlappingSquares = [];
 
     this.gameboard.querySelectorAll('.square').forEach((item) => {
-      if (this.dragboard[0].hitTest(item)) {
+      if (this.dragboard[0].hitTest(item, '50%')) {
         overlappingSquares.push(item);
         TweenMax.to(item, 0.2, { background: 'pink' });
+        this.queue = item.innerText;
       } else {
-        TweenMax.set(item, { background: 'transparent' });
+        TweenMax.to(item, 0.2, { background: 'transparent' });
       }
     });
-
-
-
-    console.log(overlappingSquares);
   }
 
   spiritTakesControl () {
     const spiritX = Math.random();
     const spiritY = Math.random();
-    console.log([spiritX, spiritY], this.piece);
     TweenMax.to(this.piece, 2, { x: spiritX, y: spiritY, ease: Power3.easeInOut });
+  }
+
+  logResult () {
+    const textElem = document.createElement('span');
+    textElem.innerText = this.queue;
+
+    this.resultsArray.push(textElem);
+
+    this.resultsArray.forEach(result => {
+      this.results.appendChild(result);
+    });
+  }
+
+  clearResults () {
+    this.results.innerHTML = '';
+    this.resultsArray = [];
   }
 
   componenWillUnmount () {
@@ -74,45 +99,66 @@ export class Redacted extends React.Component {
         <div className="row">
           <div className="ouija">
             <div className="gameboard" ref={ el => { this.gameboard = el; } }>
+              <div className="square">&nbsp;</div>
+              <div className="square">A</div>
+              <div className="square">B</div>
+              <div className="square">C</div>
+              <div className="square">&nbsp;</div>
+              <div className="square">D</div>
+              <div className="square">E</div>
+
+              <div className="square">F</div>
+              <div className="square">G</div>
+              <div className="square">H</div>
+              <div className="square">I</div>
+              <div className="square">J</div>
+
+              <div className="square">K</div>
+              <div className="square">L</div>
+              <div className="square">M</div>
+              <div className="square">N</div>
+              <div className="square">O</div>
+
+              <div className="square">P</div>
+              <div className="square">Q</div>
+              <div className="square">R</div>
+              <div className="square">S</div>
+              <div className="square">T</div>
+
+              <div className="square">U</div>
+              <div className="square">V</div>
+              <div className="square">W</div>
+              <div className="square">&nbsp;</div>
+              <div className="square">X</div>
+              <div className="square">Y</div>
+              <div className="square">Z</div>
+
+              <div className="square">&nbsp;</div>
+              <div className="square">&nbsp;</div>
+              <div className="square">&nbsp;</div>
+              <div className="square">&nbsp;</div>
+              <div className="square">&nbsp;</div>
+              <div className="square">&nbsp;</div>
+
+              <div className="square">0</div>
               <div className="square">1</div>
               <div className="square">2</div>
               <div className="square">3</div>
               <div className="square">4</div>
               <div className="square">5</div>
-
               <div className="square">6</div>
               <div className="square">7</div>
               <div className="square">8</div>
               <div className="square">9</div>
-              <div className="square">10</div>
-
-              <div className="square">11</div>
-              <div className="square">12</div>
-              <div className="square">13</div>
-              <div className="square">14</div>
-              <div className="square">15</div>
-
-              <div className="square">16</div>
-              <div className="square">17</div>
-              <div className="square">18</div>
-              <div className="square">19</div>
-              <div className="square">20</div>
-
-              <div className="square">21</div>
-              <div className="square">22</div>
-              <div className="square">23</div>
-              <div className="square">24</div>
-              <div className="square">25</div>
-
-              <div className="square">26</div>
-              <div className="square">27</div>
-              <div className="square">28</div>
-              <div className="square">29</div>
-              <div className="square">30</div>
-
-              <div className="square">31</div>
             </div>
             <span ref={ el => { this.piece = el; } } className="piece" />
+
+            <div className="controls">
+              <button className="btn mb2" onClick={ () => this.logResult() }>Log</button>
+              <button className="btn" onClick={ () => this.clearResults() }>Clear</button>
+            </div>
+
+            <div className="results" ref={ el => { this.results = el; } } />
           </div>
         </div>
       </div>
