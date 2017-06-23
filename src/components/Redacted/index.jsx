@@ -1,5 +1,5 @@
 import React from 'react';
-import { TimelineMax, TweenMax, Power3 } from 'gsap';
+import { TimelineMax, TweenMax } from 'gsap';
 import Draggable from 'vendor/Draggable';
 import ThrowPropsPlugin from 'vendor/ThrowPropsPlugin';
 import GSAP from 'react-gsap-enhancer';
@@ -21,7 +21,7 @@ export class Redacted extends React.Component {
   }
 
   generateDraggable () {
-    this.dragboard = Draggable.create(this.piece, {
+    this.dragboard = Draggable.create(this.planchette, {
       type: 'x,y',
       edgeResistance: 0.65,
       dragResistance: 0.35,
@@ -90,7 +90,7 @@ export class Redacted extends React.Component {
               <Letters />
               <Numbers />
             </div>
-            <div ref={ el => { this.piece = el; } } className="piece">
+            <div ref={ el => { this.planchette = el; } } className="planchette">
               <div className="peephole" />
             </div>
 
