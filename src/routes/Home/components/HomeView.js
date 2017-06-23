@@ -4,7 +4,7 @@ import './HomeView.scss';
 
 export const HomeView = () => (
   <section>
-    <div className="datepicker__section">
+    <div className="datepicker__section" style={ { backgroundImage: `url(${require('assets/img/bg.jpg')})` } }>
       <Redacted />
     </div>
   </section>

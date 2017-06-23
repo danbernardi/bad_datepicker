@@ -4,6 +4,8 @@ import Draggable from 'vendor/Draggable';
 import ThrowPropsPlugin from 'vendor/ThrowPropsPlugin';
 import GSAP from 'react-gsap-enhancer';
 import './Redacted.scss';
+import Letters from 'components/Letters';
+import Numbers from 'components/Numbers';
 
 export class Redacted extends React.Component {
   constructor (props) {
@@ -43,34 +45,20 @@ export class Redacted extends React.Component {
       const influenece = Math.random();
       self.dragboard[0].dragResistance = influenece;
     }, 200);
-
-    setInterval(function () {
-      function influence (endValue) {
-        return Math.round(endValue / 50) * 100;
-      };
-
-      self.dragboard[0].snap = (endValue) => { console.log(endValue); return influence(endValue); };
-    }, 6000);
   }
 
   checkForOverlappingSquares () {
     const overlappingSquares = [];
 
-    this.gameboard.querySelectorAll('.square').forEach((item) => {
-      if (this.dragboard[0].hitTest(item, '50%')) {
+    this.gameboard.querySelectorAll('.selection').forEach((item) => {
+      if (this.dragboard[0].hitTest(item, '80%')) {
         overlappingSquares.push(item);
-        TweenMax.to(item, 0.2, { background: 'pink' });
-        this.queue = item.innerText;
+        TweenMax.to(item, 0.2, { fill: '#8D2C3B' });
+        this.queue = item.getAttribute('id');
       } else {
-        TweenMax.to(item, 0.2, { background: 'transparent' });
+        TweenMax.to(item, 0.2, { fill: '#1C1D13' });
       }
     });
-  }
-
-  spiritTakesControl () {
-    const spiritX = Math.random();
-    const spiritY = Math.random();
-    TweenMax.to(this.piece, 2, { x: spiritX, y: spiritY, ease: Power3.easeInOut });
   }
 
   logResult () {
@@ -98,60 +86,13 @@ export class Redacted extends React.Component {
       <div className="layout--flex" style={ { height: '100%' } }>
         <div className="row">
           <div className="ouija">
-            <div className="gameboard" ref={ el => { this.gameboard = el; } }>
-              <div className="square">&nbsp;</div>
-              <div className="square">A</div>
-              <div className="square">B</div>
-              <div className="square">C</div>
-              <div className="square">&nbsp;</div>
-              <div className="square">D</div>
-              <div className="square">E</div>
-
-              <div className="square">F</div>
-              <div className="square">G</div>
-              <div className="square">H</div>
-              <div className="square">I</div>
-              <div className="square">J</div>
-
-              <div className="square">K</div>
-              <div className="square">L</div>
-              <div className="square">M</div>
-              <div className="square">N</div>
-              <div className="square">O</div>
-
-              <div className="square">P</div>
-              <div className="square">Q</div>
-              <div className="square">R</div>
-              <div className="square">S</div>
-              <div className="square">T</div>
-
-              <div className="square">U</div>
-              <div className="square">V</div>
-              <div className="square">W</div>
-              <div className="square">&nbsp;</div>
-              <div className="square">X</div>
-              <div className="square">Y</div>
-              <div className="square">Z</div>
-
-              <div className="square">&nbsp;</div>
-              <div className="square">&nbsp;</div>
-              <div className="square">&nbsp;</div>
-              <div className="square">&nbsp;</div>
-              <div className="square">&nbsp;</div>
-              <div className="square">&nbsp;</div>
-
-              <div className="square">0</div>
-              <div className="square">1</div>
-              <div className="square">2</div>
-              <div className="square">3</div>
-              <div className="square">4</div>
-              <div className="square">5</div>
-              <div className="square">6</div>
-              <div className="square">7</div>
-              <div className="square">8</div>
-              <div className="square">9</div>
+            <div className="gameboard" ref={ el => { this.gameboard = el; } } style={ { backgroundImage: `url(${require('assets/img/ouijablank.jpg')})` } }>
+              <Letters />
+              <Numbers />
             </div>
-            <span ref={ el => { this.piece = el; } } className="piece" />
+            <div ref={ el => { this.piece = el; } } className="piece">
+              <div className="peephole" />
+            </div>
 
             <div className="controls">
               <button className="btn mb2" onClick={ () => this.logResult() }>Log</button>

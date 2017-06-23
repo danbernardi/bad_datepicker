@@ -6,38 +6,30 @@
 }
 
 .gameboard {
-  width: 60vw;
-  height: 60vh;
-  border: 0.1rem solid $medium-grey;
-  display: flex;
-  flex-wrap: wrap;
+  width: 86.5rem;
+  height: 57.5rem;
   margin-bottom: 3rem;
-}
-
-.square {
-  width: 20%;
-  height: 11.1111111%;
-  display: block;
-  border-right: 0.1rem solid rgba($medium-grey, 0.3);
-  border-bottom: 0.1rem solid rgba($medium-grey, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  transition: color 0.3s ease-in-out;
+  padding: 19rem 16rem 12rem;
+  border: 0.1rem solid #1C1D13;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
 }
 
 .piece {
-  width: 6rem;
-  height: 6rem;
-  border-radius: 50%;
-  border: 0.3rem solid $medium-grey;
-  display: block;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(yellow, 0.4);
+
+  .peephole {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    border: 0.3rem solid rgba(#1C1D13, 0.5);
+    display: block;
+    background: rgba(#DD8403, 0.4);
+  }
 }
 
 .controls {
@@ -52,7 +44,7 @@
 
 .results {
   position: absolute;
-  top: 62vh;
+  top: 60rem;
   text-align: center;
   width: 100%;
   padding-right: 15rem;
@@ -64,6 +56,7 @@
     display: inline-block;
     width: 2.4rem;
     text-align: center;
+    vertical-align: bottom;
 
     &:after {
       content: '';
@@ -75,5 +68,10 @@
       display: block;
     }
   }
+}
+
+#numbers {
+  max-width: 70%;
+  margin: 6rem auto 0;
 }
 

@@ -1,14 +1,14 @@
 
 // defines basic btn
 .btn {
-  background: blue;
+  background: #8D2C3B;
   color: $white;
   padding: 0.7em 1.3em;
   text-align: center;
   min-width: 10rem;
   cursor: pointer;
   border-radius: 0.4rem;
-  border: 0.1rem solid blue;
+  border: 0.1rem solid #8D2C3B;
   display: inline-block;
   transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
   // media  queries
@@ -22,7 +22,7 @@
     font-size: 1.1rem;
   }
 
-  &:hover { background: $medium-grey; border-color: $medium-grey; }
+  &:hover { background: $dark-grey; border-color: $dark-grey; }
 
   &.disabled {
     pointer-events: none;
